@@ -87,11 +87,11 @@ contract TLMProxy is IEventRelayer, DecimalMath {
         pool.fyDai().approve(address(pool), type(uint256).max); // TODO: Move to right place
         
         uint256 fyDaiToBorrow = pool.buyDaiPreview(daiToBuy.toUint128()); // If not calculated on-chain, there will be fyDai left as slippage
-        require (fyDaiToBorrow <= maximumFYDai, "USDCProxy: Too much fyDai required");
+        require (fyDaiToBorrow <= maximumFYDai, "TLMProxy: Too much fyDai required");
 
         // The collateral for this borrow needs to have been posted beforehand
         controller.borrow(collateral, maturity, msg.sender, address(this), fyDaiToBorrow);
-        pool.buyDai(address(this), address(this), daiToBuy.toUint128());
+        //pool.buyDai(address(this), address(this), daiToBuy.toUint128());
         //psm.buyGem(to, usdcToBorrow); // PSM takes USDC amounts with 6 decimals
         tsm.sellGem(to, daiToBuy);
 
