@@ -11,13 +11,12 @@ import "@yield-protocol/vault-v1/contracts/interfaces/IController.sol";
 import "@yield-protocol/yieldspace-v1/contracts/interfaces/IPool.sol";
 import "dss-interfaces/src/dss/AuthGemJoinAbstract.sol";
 import "dss-interfaces/src/dss/DaiAbstract.sol";
-import "./interfaces/IUSDC.sol";
 import "./interfaces/DssPsmAbstract.sol";
 
 
 library RoundingMath {
     function divrup(uint256 x, uint256 y) internal pure returns (uint256 z) {
-        require (y > 0, "USDCProxy: Division by zero");
+        require (y > 0, "TLMProxy: Division by zero");
         return x % y == 0 ? x / y : x / y + 1;
     }
 }
@@ -33,31 +32,29 @@ contract TLMProxy is IEventRelayer, DecimalMath {
     using RoundingMath for uint256;
     using YieldAuth for DaiAbstract;
     using YieldAuth for IFYDai;
-    using YieldAuth for IUSDC;
     using YieldAuth for IController;
     using YieldAuth for IPool;
 
-    event BorrowedUSDC(address indexed user);
+    event BorrowedDai(address indexed user);
     event RepaidDebtEarly(address indexed user);
     event RepaidDebtMature(address indexed user);
 
     DaiAbstract public immutable dai;
-    IUSDC public immutable usdc;
     IController public immutable controller;
-    DssPsmAbstract public immutable psm;
-    IEventRelayer public immutable usdcProxy;
+    //TODO: bring TLM in here
+    //DssPsmAbstract public immutable psm;
+    //IEventRelayer public immutable usdcProxy;
 
     address public immutable treasury;
-
+    
     bytes32 public constant WETH = "ETH-A";
 
-    constructor(IController _controller, DssPsmAbstract psm_) public {
+    constructor(IController _controller, tlm_) public {
         ITreasury _treasury = _controller.treasury();
         dai = _treasury.dai();
         treasury = address(_treasury);
         controller = _controller;
-        psm = psm_;
-        usdc = IUSDC(AuthGemJoinAbstract(psm_.gemJoin()).gem());
+        tlm = tlm_;
         usdcProxy = IEventRelayer(address(this)); // This contract has two functions, as itself, and delegatecalled by a dsproxy.
     }
 
@@ -74,14 +71,14 @@ contract TLMProxy is IEventRelayer, DecimalMath {
     /// @param collateral Valid collateral type.
     /// @param maturity Maturity of an added series
     /// @param to Wallet to send the resulting Dai to.
-    /// @param usdcToBorrow Exact amount of USDC that should be obtained.
+    /// @param daiToBorrow Exact amount of USDC that should be obtained.
     /// @param maximumFYDai Maximum amount of FYDai to borrow.
-    function borrowUSDCForMaximumFYDai(
+    function borrowDaiForMaximumFYDai(
         IPool pool,
         bytes32 collateral,
         uint256 maturity,
         address to,
-        uint256 usdcToBorrow,
+        uint256 daiToBorrow,
         uint256 maximumFYDai
     )
         public
@@ -89,19 +86,16 @@ contract TLMProxy is IEventRelayer, DecimalMath {
     {
         pool.fyDai().approve(address(pool), type(uint256).max); // TODO: Move to right place
         
-        uint256 usdcToBorrow18 = usdcToBorrow.mul(1e12); // USDC has 6 decimals
-        uint256 fee = usdcToBorrow18.mul(psm.tout()) / 1e18; // tout has 18 decimals
-        uint256 daiToBuy = usdcToBorrow18.add(fee);
-
         uint256 fyDaiToBorrow = pool.buyDaiPreview(daiToBuy.toUint128()); // If not calculated on-chain, there will be fyDai left as slippage
         require (fyDaiToBorrow <= maximumFYDai, "USDCProxy: Too much fyDai required");
 
         // The collateral for this borrow needs to have been posted beforehand
         controller.borrow(collateral, maturity, msg.sender, address(this), fyDaiToBorrow);
         pool.buyDai(address(this), address(this), daiToBuy.toUint128());
-        psm.buyGem(to, usdcToBorrow); // PSM takes USDC amounts with 6 decimals
+        //psm.buyGem(to, usdcToBorrow); // PSM takes USDC amounts with 6 decimals
+        tsm.sellGem(to, daiToBuy);
 
-        usdcProxy.relay(EventType.BorrowedUSDCType, msg.sender);
+        //usdcProxy.relay(EventType.BorrowedUSDCType, msg.sender);
 
         return fyDaiToBorrow;
     }
@@ -254,7 +248,8 @@ contract TLMProxy is IEventRelayer, DecimalMath {
     /// --------------------------------------------------
 
     /// @dev Set proxy approvals for `borrowUSDCForMaximumFYDai` with a given pool.
-    function borrowUSDCForMaximumFYDaiApprove(IPool pool) public {
+    //TODO: Rework this to work with TLM
+    function borrowDaiForMaximumFYDaiApprove(IPool pool) public {
         // allow the pool to pull FYDai/dai from us for trading
         if (pool.fyDai().allowance(address(this), address(pool)) < type(uint112).max)
             pool.fyDai().approve(address(pool), type(uint256).max);
@@ -272,12 +267,13 @@ contract TLMProxy is IEventRelayer, DecimalMath {
     /// @param usdcToBorrow Exact amount of USDC that should be obtained.
     /// @param maximumFYDai Maximum amount of FYDai to borrow.
     /// @param controllerSig packed signature for delegation of this proxy in the controller. Ignored if '0x'.
-    function borrowUSDCForMaximumFYDaiWithSignature(
+    //TODO: Rework this for TLM
+    function borrowDaiForMaximumFYDaiWithSignature(
         IPool pool,
         bytes32 collateral,
         uint256 maturity,
         address to,
-        uint256 usdcToBorrow,
+        uint256 daiToBorrow,
         uint256 maximumFYDai,
         
         bytes memory controllerSig
@@ -285,9 +281,9 @@ contract TLMProxy is IEventRelayer, DecimalMath {
         public
         returns (uint256)
     {
-        borrowUSDCForMaximumFYDaiApprove(pool);
+        borrowDaiForMaximumFYDaiApprove(pool);
         if (controllerSig.length > 0) controller.addDelegatePacked(controllerSig);
-        return borrowUSDCForMaximumFYDai(pool, collateral, maturity, to, usdcToBorrow, maximumFYDai);
+        return borrowDaiForMaximumFYDai(pool, collateral, maturity, to, daiToBorrow, maximumFYDai);
     }
 
     /// @dev Set proxy approvals for `repayDebtEarly` with a given pool.
