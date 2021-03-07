@@ -41,8 +41,6 @@ contract TLMProxy is IEventRelayer, DecimalMath {
 
     DaiAbstract public immutable dai;
     IController public immutable controller;
-    //TODO: bring TLM in here
-    //DssPsmAbstract public immutable psm;
     DssTlmAbstract public immutable tlm;
     //IEventRelayer public immutable usdcProxy;
 
@@ -442,17 +440,4 @@ contract TLMProxy is IEventRelayer, DecimalMath {
         return repayAllMature(collateral, maturity, to);
     }
 
-    /// --------------------------------------------------
-    /// Convenience functions
-    /// --------------------------------------------------
-
-    /// @dev Return PSM's tin, so the frontend needs to do one less call.
-    function tin() public view returns (uint256) {
-        return psm.tin();
-    }
-
-    /// @dev Return PSM's tout, so the frontend needs to do one less call.
-    function tout() public view returns (uint256) {
-        return psm.tout();
-    }
 }
