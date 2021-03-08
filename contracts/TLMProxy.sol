@@ -21,12 +21,7 @@ library RoundingMath {
     }
 }
 
-interface IEventRelayer {
-    enum EventType {BorrowedUSDCType, RepaidDebtEarlyType, RepaidDebtMatureType}
-    function relay(EventType eventType, address user) external;
-}
-
-contract TLMProxy is IEventRelayer, DecimalMath {
+contract TLMProxy is DecimalMath {
     using SafeCast for uint256;
     using SafeMath for uint256;
     using RoundingMath for uint256;
@@ -42,7 +37,6 @@ contract TLMProxy is IEventRelayer, DecimalMath {
     DaiAbstract public immutable dai;
     IController public immutable controller;
     DssTlmAbstract public immutable tlm;
-    //IEventRelayer public immutable usdcProxy;
 
     address public immutable treasury;
     
@@ -54,17 +48,7 @@ contract TLMProxy is IEventRelayer, DecimalMath {
         treasury = address(_treasury);
         controller = _controller;
         tlm = tlm_;
-        //usdcProxy = IEventRelayer(address(this)); // This contract has two functions, as itself, and delegatecalled by a dsproxy.
-    }
-
-    /// @dev Workaround to emit events from the USDCProxy contract when being executed through a dsProxy delegate call.
-    /// Not sure if this is still needed 
-    function relay(EventType eventType, address user) public override {
-        if (eventType == EventType.BorrowedUSDCType) emit BorrowedUSDC(user);
-        if (eventType == EventType.RepaidDebtEarlyType) emit RepaidDebtEarly(user);
-        if (eventType == EventType.RepaidDebtMatureType) emit RepaidDebtMature(user);
-    }
-
+        }
 
     /// @dev Borrow fyDai from Controller, sell it immediately for Dai in Maker's TLM for a maximum fyDai debt.
     /// Must have approved the operator with `controller.addDelegate(borrowProxy.address)` or with `borrowDaiForMaximumFYDaiWithSignature`.
