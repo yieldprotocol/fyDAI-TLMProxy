@@ -3,29 +3,17 @@ pragma solidity ^0.6.10;
 
 import "@openzeppelin/contracts/math/SafeMath.sol"; // TODO: Bring into @yield-protocol/utils
 import "@yield-protocol/utils/contracts/math/DecimalMath.sol"; // TODO: Make into library
-import "@yield-protocol/utils/contracts/utils/SafeCast.sol";
 import "@yield-protocol/utils/contracts/utils/YieldAuth.sol";
 import "@yield-protocol/vault-v1/contracts/interfaces/IFYDai.sol";
-import "@yield-protocol/vault-v1/contracts/interfaces/ITreasury.sol";
 import "@yield-protocol/vault-v1/contracts/interfaces/IController.sol";
 import "@yield-protocol/yieldspace-v1/contracts/interfaces/IPool.sol";
 import "dss-interfaces/src/dss/AuthGemJoinAbstract.sol";
-import "dss-interfaces/src/dss/DaiAbstract.sol";
 import "./interfaces/DssTlmAbstract.sol";
-
-
-library RoundingMath {
-    function divrup(uint256 x, uint256 y) internal pure returns (uint256 z) {
-        require (y > 0, "TLMProxy: Division by zero");
-        return x % y == 0 ? x / y : x / y + 1;
-    }
-}
 
 contract TLMProxy is DecimalMath {
     using SafeCast for uint256;
     using SafeMath for uint256;
     using RoundingMath for uint256;
-    using YieldAuth for DaiAbstract;
     using YieldAuth for IFYDai;
     using YieldAuth for IController;
     using YieldAuth for IPool;
@@ -36,16 +24,10 @@ contract TLMProxy is DecimalMath {
 
     DaiAbstract public immutable dai;
     IController public immutable controller;
-    DssTlmAbstract public immutable tlm;
-
-    address public immutable treasury;
     
     bytes32 public constant WETH = "ETH-A";
 
     constructor(IController _controller, DssTlmAbstract tlm_) public {
-        ITreasury _treasury = _controller.treasury();
-        dai = _treasury.dai();
-        treasury = address(_treasury);
         controller = _controller;
         tlm = tlm_;
         }
