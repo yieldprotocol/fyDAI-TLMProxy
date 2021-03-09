@@ -2,17 +2,33 @@
 pragma solidity ^0.6.7;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@yield-protocol/utils/contracts/access/Delegable.sol";
-import "@yield-protocol/vault-v1/contracts/interfaces/IFYDai.sol";
+import "./FYDaiMock.sol";
+
+contract TreasuryMock {
+    
+    IERC20 public immutable weth;
+
+    constructor(IERC20 weth_) public {
+        weth = weth_;
+    }
+
+    function pull(address from, uint256 amount) public {
+        weth.transferFrom(from, address(this), amount);
+    }
+}
 
 contract ControllerMock is Delegable  {
 
     bytes32 public constant WETH = "ETH-A";
 
+    TreasuryMock public immutable treasury;
     IERC20 public immutable weth;
-    mapping(bytes32 => bool) posted;
-    mapping(uint256 => IFYDai) fyDais;
+    mapping(bytes32 => bool) public posted;
+    mapping(uint256 => FYDaiMock) public fyDais;
 
-    constructor(IERC20 weth_, IFYDai[] memory fyDais_) public {
+    constructor(IERC20 weth_, FYDaiMock[] memory fyDais_) public {
+        treasury = new TreasuryMock(weth_);
+
         weth = weth_;
         for (uint i = 0 ; i < fyDais_.length; i++) {
             fyDais[fyDais_[i].maturity()] = fyDais_[i];
@@ -29,7 +45,7 @@ contract ControllerMock is Delegable  {
 
     modifier validSeries(uint256 maturity) {
         require(
-            fyDais[maturity] != IFYDai(address(0)),
+            fyDais[maturity] != FYDaiMock(address(0)),
             "Controller: Unrecognized series"
         );
         _;
@@ -40,7 +56,7 @@ contract ControllerMock is Delegable  {
         validCollateral(collateral)
         onlyHolderOrDelegate(from, "Controller: Only Holder Or Delegate")
     {
-        if (collateral == WETH) weth.transferFrom(from, address(this), amount);
+        treasury.pull(from, amount);
         posted[collateral] = true;
     }
 
