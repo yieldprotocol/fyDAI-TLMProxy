@@ -1910,6 +1910,11 @@
     "@types/sinon-chai" "^3.2.3"
     "@types/web3" "1.0.19"
 
+"@openzeppelin/contracts@^3.1.0":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-3.4.1.tgz#03c891fec7f93be0ae44ed74e57a122a38732ce7"
+  integrity sha512-cUriqMauq1ylzP2TxePNdPqkwI7Le3Annh4K9rrpvKfSBB/bdW+Iu1ihBaTIABTAAJ85LmKL5SSPPL9ry8d1gQ==
+
 "@resolver-engine/core@^0.3.3":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@resolver-engine/core/-/core-0.3.3.tgz#590f77d85d45bc7ecc4e06c654f41345db6ca967"
@@ -2561,13 +2566,23 @@
   resolved "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
   integrity sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==
 
-"@yield-protocol/utils@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@yield-protocol/utils/-/utils-1.2.1.tgz#9cc8d0461c15246c7e88e4c0cc991460f394a062"
-  integrity sha512-kREAf0efS/r+dqqjtqC24dCSikxw8GN6HpNfmetLrjUo0UG3LV1OTmyTiDupP/TX8lmBX4fC1qzrB/hAoNpPCw==
+"@yield-protocol/utils@1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@yield-protocol/utils/-/utils-1.0.7.tgz#8bd95573ff50657ed14c14889dc75762ada073a7"
+  integrity sha512-LVCJieZelJAvfqZNZXDPmWTJ+L84V6paMlssLP9zqcoBPjWZ8Ye3h3IVpAXsJzqtUmF259l/Wlky3Oosv4TsiQ==
   dependencies:
     ethereumjs-util "^7.0.8"
     ethers "^5.0.7"
+
+"@yield-protocol/vault-v1@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@yield-protocol/vault-v1/-/vault-v1-1.0.3.tgz#29101f4608ad383ac95b43c87066e6b7041ecb44"
+  integrity sha512-GIrZIrJ/9uJX6ct520tFWR3/LtZCcZfOIJtRc9tlANnAU38KeZg5C71r1Z65Lqqkxql66Xu1G4gRPFPc8OArbg==
+
+"@yield-protocol/yieldspace-v1@1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@yield-protocol/yieldspace-v1/-/yieldspace-v1-1.0.5.tgz#9e2d0d5614ac5dcbe1ce81340fc45ff6790972e4"
+  integrity sha512-hTeVnmzOxBYfKPf6PR+dZBgfKoOit7RBZ6ei6KDRBEGOJslnmQdFVVqUFvrmEmE2L0h2kJXjN/kvnxybQlZKug==
 
 abab@^2.0.0:
   version "2.0.5"

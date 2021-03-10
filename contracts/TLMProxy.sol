@@ -53,10 +53,9 @@ contract TLMProxy is DecimalMath {
         //not sure if this is called correctly but this is how it's done in this example
         //https://github.com/yieldprotocol/dss-tlm#approvals
         //sellGem(bytes32 ilk, address usr, uint256 gemAmt)
-        tsm.sellGem(to, fyDaiToBorrow);
 
         //TODO: return the amount of dai generated from the sale instead
-        return fyDaiToBorrow;
+        return tsm.sellGem(to, fyDaiToBorrow);
 
     }
 }
