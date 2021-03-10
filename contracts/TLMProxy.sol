@@ -6,6 +6,7 @@ import "@yield-protocol/utils/contracts/math/DecimalMath.sol"; // TODO: Make int
 import "@yield-protocol/utils/contracts/utils/YieldAuth.sol";
 import "@yield-protocol/vault-v1/contracts/interfaces/IController.sol";
 import "./interfaces/DssTlmAbstract.sol";
+import "@yield-protocol/dss-tlm/DssTlmAbstract.sol"
 
 contract TLMProxy is DecimalMath {
     using SafeCast for uint256;
