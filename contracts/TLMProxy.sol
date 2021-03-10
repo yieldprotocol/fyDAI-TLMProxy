@@ -5,21 +5,22 @@ import "@openzeppelin/contracts/math/SafeMath.sol"; // TODO: Bring into @yield-p
 import "@yield-protocol/utils/contracts/math/DecimalMath.sol"; // TODO: Make into library
 import "@yield-protocol/utils/contracts/utils/YieldAuth.sol";
 import "@yield-protocol/vault-v1/contracts/interfaces/IController.sol";
-import "@yield-protocol/dss-tlm/src/DssTlmAbstract.sol"
+import "@yield-protocol/dss-tlm/src/DssTlmAbstract.sol";
 
 contract TLMProxy is DecimalMath {
-    using SafeCast for uint256;
     using SafeMath for uint256;
-    using RoundingMath for uint256;
+    //using RoundingMath for uint256;
     using YieldAuth for IController;
 
     //event BorrowedDai(address indexed user);
     //not used for now but perhaps we will emit it later
 
     IController public immutable controller;
+
+    DssTlmAbstract public immutable tlm;
     
-    //not needed
-    //bytes32 public constant WETH = "ETH-A";
+    bytes32 public constant WETH = "ETH-A";
+    bytes32 public constant FYDAI = "FYDAI"
 
     constructor(IController _controller, DssTlmAbstract tlm_) public {
         controller = _controller;
@@ -34,6 +35,7 @@ contract TLMProxy is DecimalMath {
     function borrow(
         bytes32 collateral, 
         uint256 maturity, 
+        bytes32 ilk,
         address to, 
         uint256 fyDaiToBorrow
     )
@@ -41,6 +43,6 @@ contract TLMProxy is DecimalMath {
         returns (uint256)
     {
         controller.borrow(collateral, maturity, msg.sender, address(this), fyDaiToBorrow);
-        return tsm.sellGem(to, fyDaiToBorrow);
+        return tlm.sellGem(ilk, to, fyDaiToBorrow);
     }
 }
