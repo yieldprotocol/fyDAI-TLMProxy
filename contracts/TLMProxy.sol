@@ -5,8 +5,7 @@ import "@openzeppelin/contracts/math/SafeMath.sol"; // TODO: Bring into @yield-p
 import "@yield-protocol/utils/contracts/math/DecimalMath.sol"; // TODO: Make into library
 import "@yield-protocol/utils/contracts/utils/YieldAuth.sol";
 import "@yield-protocol/vault-v1/contracts/interfaces/IController.sol";
-import "./interfaces/DssTlmAbstract.sol";
-import "@yield-protocol/dss-tlm/DssTlmAbstract.sol"
+import "@yield-protocol/dss-tlm/src/DssTlmAbstract.sol"
 
 contract TLMProxy is DecimalMath {
     using SafeCast for uint256;
