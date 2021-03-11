@@ -44,6 +44,5 @@ contract TLMProxy is DecimalMath {
     {
         controller.borrow(collateral, maturity, msg.sender, address(this), fyDaiToBorrow);
         tlm.sellGem(ilk, to, fyDaiToBorrow);
-        return 0;
     }
 }
