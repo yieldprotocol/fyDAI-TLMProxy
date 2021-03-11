@@ -6,7 +6,7 @@ import "solidity-coverage";
 export default {
   defaultNetwork: "hardhat",
   solidity: {
-    version: "0.8.1",
+    version: "0.6.10",
     settings: {
       optimizer: {
         enabled: true,

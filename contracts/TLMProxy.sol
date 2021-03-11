@@ -20,7 +20,7 @@ contract TLMProxy is DecimalMath {
     DssTlmAbstract public immutable tlm;
     
     bytes32 public constant WETH = "ETH-A";
-    bytes32 public constant FYDAI = "FYDAI"
+    bytes32 public constant FYDAI = "FYDAI";
 
     constructor(IController _controller, DssTlmAbstract tlm_) public {
         controller = _controller;
@@ -43,6 +43,7 @@ contract TLMProxy is DecimalMath {
         returns (uint256)
     {
         controller.borrow(collateral, maturity, msg.sender, address(this), fyDaiToBorrow);
-        return tlm.sellGem(ilk, to, fyDaiToBorrow);
+        tlm.sellGem(ilk, to, fyDaiToBorrow);
+        return 0;
     }
 }
