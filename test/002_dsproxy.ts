@@ -88,6 +88,23 @@ describe('Mocks', () => {
         await controller.borrow(WETH, maturity, owner, owner, WAD)
         expect(await fyDai.balanceOf(owner)).to.equal(WAD)
       })
+
+      it('borrows fyDai from controller using DSProxy'), async () => {
+      // seems like this part should be identical to what's in the tests for usdcproxy?
+      // Authorize dsProxy for the controller
+      const controllerDigest = getSignatureDigest(
+        name,
+        controller.address,
+        chainId,
+        {
+          user: user1,
+          delegate: dsProxy.address,
+        },
+        (await controller.signatureCount(user1)).toString(),
+        MAX
+      )
+      controllerSig = signPacked(controllerDigest, privateKey0)
+      }
     })
   
     it('sells fyDai to tlm', async () => {
