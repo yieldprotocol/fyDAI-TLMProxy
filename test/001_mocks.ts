@@ -50,6 +50,16 @@ describe('Mocks', () => {
     fyDai = (await deployContract(ownerAcc, FYDaiMockArtifact, [FYDAI, 'fyDai Maturing Token', maturity])) as FYDaiMock
     controller = (await deployContract(ownerAcc, ControllerMockArtifact, [weth.address, [fyDai.address]])) as ControllerMock
     tlm = (await deployContract(ownerAcc, TLMMockArtifact, [dai.address, fyDai.address])) as TLMMock
+
+    // taken from https://github.com/yieldprotocol/fyDai-USDCProxy/blob/main/test/524_usdcProxy.ts
+    // Setup DSProxyFactory and DSProxyCache
+    proxyFactory = await DSProxyFactory.new({ from: owner })
+
+    // Setup DSProxyRegistry
+    proxyRegistry = await DSProxyRegistry.new(proxyFactory.address, { from: owner })
+
+    await proxyRegistry.build({ from: user1 })
+    dsProxy = await DSProxy.at(await proxyRegistry.proxies(user1))
   })
 
   it('posts WETH to controller', async () => {
