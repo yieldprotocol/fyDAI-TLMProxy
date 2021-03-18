@@ -14,6 +14,7 @@ import { TLMMock } from '../typechain/TLMMock'
 import { ethers, waffle } from 'hardhat'
 import { BigNumber } from 'ethers'
 import { expect } from 'chai'
+import { ITreasury, TLMProxy } from '../typechain'
 const { deployContract } = waffle
 
 const DSProxy = artifacts.require('DSProxy')
@@ -31,6 +32,7 @@ describe('Mocks', () => {
     let fyDai: FYDaiMock
     let controller: ControllerMock
     let tlm: TLMMock
+    let proxy: TLMProxy
 
     let proxyFactory: Contract
     let proxyRegistry: Contract
@@ -88,24 +90,6 @@ describe('Mocks', () => {
         await controller.borrow(WETH, maturity, owner, owner, WAD)
         expect(await fyDai.balanceOf(owner)).to.equal(WAD)
       })
-
-      it('borrows fyDai from controller using DSProxy'), async () => {
-      // seems like this part should be identical to what's in the tests for usdcproxy?
-      // Authorize dsProxy for the controller
-      const controllerDigest = getSignatureDigest(
-        name,
-        controller.address,
-        chainId,
-        {
-          user: user1,
-          delegate: dsProxy.address,
-        },
-        (await controller.signatureCount(user1)).toString(),
-        MAX
-      )
-      controllerSig = signPacked(controllerDigest, privateKey0)
-      }
-    })
   
     it('sells fyDai to tlm', async () => {
       await fyDai.mint(owner, WAD);
@@ -113,4 +97,21 @@ describe('Mocks', () => {
       await tlm.sellGem(FYDAI, owner, WAD)
       expect(await dai.balanceOf(owner)).to.equal(WAD)
     })
+
+    it('borrows from tlm using DSProxy', async () => {
+      const calldata = proxy.contract.methods
+        .borrow(,
+          WETH,
+          maturity1,
+          ilk1,
+          to,
+          fyDaiTokens1,
+        )
+        .encodeABI()
+      const tx = await dsProxy.methods['execute(address,bytes)'](proxy.address, calldata, {
+          from: user1,
+      })
+      //check result here
+    })
+
   })
