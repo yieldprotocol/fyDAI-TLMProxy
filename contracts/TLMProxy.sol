@@ -45,4 +45,27 @@ contract TLMProxy is DecimalMath {
         controller.borrow(collateral, maturity, msg.sender, address(this), fyDaiToBorrow);
         tlm.sellGem(ilk, to, fyDaiToBorrow);
     }
+
+    /// @dev Borrow fyDai from Controller, sell it immediately for Dai in a pool, and sell the Dai for USDC in Maker's PSM, for a maximum fyDai debt.
+    /// Must have approved the operator with `controller.addDelegate(borrowProxy.address)` or with `borrowDaiForMaximumFYDaiWithSignature`.
+    /// Caller must have called `borrowDaiForMaximumFYDaiWithSignature` at least once before to set proxy approvals.
+    /// @param collateral Valid collateral type.
+    /// @param maturity Maturity of an added series
+    /// @param to Wallet to send the resulting Dai to.
+    /// @param fyDaiToBorrow Exact amount of fyDai that should be obtained.
+    /// @param controllerSig packed signature for delegation of this proxy in the controller. Ignored if '0x'.
+    function borrowWithSignature(
+        IPool pool,
+        bytes32 collateral,
+        uint256 maturity,
+        address to,
+        uint256 fyDaiToBorrow,
+        
+        bytes memory controllerSig
+    )
+        public 
+        returns (uint256)
+    {
+        // TODO: 
+    }
 }
