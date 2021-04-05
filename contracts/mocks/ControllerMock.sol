@@ -24,14 +24,14 @@ contract ControllerMock is Delegable  {
     TreasuryMock public immutable treasury;
     IERC20 public immutable weth;
     mapping(bytes32 => bool) public posted;
-    mapping(uint256 => FYDaiMock) public fyDais;
+    mapping(uint256 => FYDaiMock) public series;
 
-    constructor(IERC20 weth_, FYDaiMock[] memory fyDais_) public {
+    constructor(IERC20 weth_, FYDaiMock[] memory series_) public {
         treasury = new TreasuryMock(weth_);
 
         weth = weth_;
-        for (uint i = 0 ; i < fyDais_.length; i++) {
-            fyDais[fyDais_[i].maturity()] = fyDais_[i];
+        for (uint i = 0 ; i < series_.length; i++) {
+            series[series_[i].maturity()] = series_[i];
         }
     }
 
@@ -45,7 +45,7 @@ contract ControllerMock is Delegable  {
 
     modifier validSeries(uint256 maturity) {
         require(
-            fyDais[maturity] != FYDaiMock(address(0)),
+            series[maturity] != FYDaiMock(address(0)),
             "Controller: Unrecognized series"
         );
         _;
@@ -67,6 +67,6 @@ contract ControllerMock is Delegable  {
         onlyHolderOrDelegate(from, "Controller: Only Holder Or Delegate")
     {
         require(posted[collateral], "Controller: Too much debt");
-        fyDais[maturity].mint(to, fyDaiAmount);
+        series[maturity].mint(to, fyDaiAmount);
     }
 }
