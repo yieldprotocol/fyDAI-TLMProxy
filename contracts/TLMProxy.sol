@@ -17,7 +17,7 @@ interface AuthGemJoinAbstract {
 interface MaturingGemAbstract {
 }
 
-contract TlmProxy {
+contract TLMProxy {
     using YieldAuth for IFYDai;
     using YieldAuth for IController;
 
@@ -25,7 +25,7 @@ contract TlmProxy {
 
     IController public immutable controller;
     DssTlmAbstract public immutable tlm;
-    TlmProxy public immutable tlmProxy;
+    TLMProxy public immutable tlmProxy;
     
     mapping (uint256 => mapping(bytes32 => IFYDai)) public assets;  // Maturities that have a corresponding ilk in the TLM
     mapping (bytes32 => address) public gemJoins;                  // Cache of TLM gemJoins
