@@ -23,35 +23,70 @@ import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
 interface TLMProxyInterface extends ethers.utils.Interface {
   functions: {
-    "FYDAI()": FunctionFragment;
-    "UNIT()": FunctionFragment;
-    "WETH()": FunctionFragment;
+    "assets(uint256,bytes32)": FunctionFragment;
     "borrow(bytes32,uint256,bytes32,address,uint256)": FunctionFragment;
+    "borrowWithSignature(bytes32,uint256,bytes32,address,uint256,bytes)": FunctionFragment;
     "controller()": FunctionFragment;
+    "fetch(uint256,bytes32)": FunctionFragment;
+    "gemJoins(bytes32)": FunctionFragment;
+    "register(uint256,bytes32)": FunctionFragment;
     "tlm()": FunctionFragment;
+    "tlmProxy()": FunctionFragment;
   };
 
-  encodeFunctionData(functionFragment: "FYDAI", values?: undefined): string;
-  encodeFunctionData(functionFragment: "UNIT", values?: undefined): string;
-  encodeFunctionData(functionFragment: "WETH", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "assets",
+    values: [BigNumberish, BytesLike]
+  ): string;
   encodeFunctionData(
     functionFragment: "borrow",
     values: [BytesLike, BigNumberish, BytesLike, string, BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "borrowWithSignature",
+    values: [
+      BytesLike,
+      BigNumberish,
+      BytesLike,
+      string,
+      BigNumberish,
+      BytesLike
+    ]
+  ): string;
+  encodeFunctionData(
     functionFragment: "controller",
     values?: undefined
   ): string;
+  encodeFunctionData(
+    functionFragment: "fetch",
+    values: [BigNumberish, BytesLike]
+  ): string;
+  encodeFunctionData(functionFragment: "gemJoins", values: [BytesLike]): string;
+  encodeFunctionData(
+    functionFragment: "register",
+    values: [BigNumberish, BytesLike]
+  ): string;
   encodeFunctionData(functionFragment: "tlm", values?: undefined): string;
+  encodeFunctionData(functionFragment: "tlmProxy", values?: undefined): string;
 
-  decodeFunctionResult(functionFragment: "FYDAI", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "UNIT", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "WETH", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "assets", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "borrow", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "borrowWithSignature",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "controller", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "fetch", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "gemJoins", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "register", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "tlm", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "tlmProxy", data: BytesLike): Result;
 
-  events: {};
+  events: {
+    "SeriesRegistered(uint256,bytes32,address,address)": EventFragment;
+  };
+
+  getEvent(nameOrSignatureOrTopic: "SeriesRegistered"): EventFragment;
 }
 
 export class TLMProxy extends Contract {
@@ -96,17 +131,17 @@ export class TLMProxy extends Contract {
   interface: TLMProxyInterface;
 
   functions: {
-    FYDAI(overrides?: CallOverrides): Promise<[string]>;
+    assets(
+      arg0: BigNumberish,
+      arg1: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
-    "FYDAI()"(overrides?: CallOverrides): Promise<[string]>;
-
-    UNIT(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "UNIT()"(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    WETH(overrides?: CallOverrides): Promise<[string]>;
-
-    "WETH()"(overrides?: CallOverrides): Promise<[string]>;
+    "assets(uint256,bytes32)"(
+      arg0: BigNumberish,
+      arg1: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
     borrow(
       collateral: BytesLike,
@@ -126,26 +161,81 @@ export class TLMProxy extends Contract {
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
+    borrowWithSignature(
+      collateral: BytesLike,
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      to: string,
+      fyDaiToBorrow: BigNumberish,
+      controllerSig: BytesLike,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "borrowWithSignature(bytes32,uint256,bytes32,address,uint256,bytes)"(
+      collateral: BytesLike,
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      to: string,
+      fyDaiToBorrow: BigNumberish,
+      controllerSig: BytesLike,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
     controller(overrides?: CallOverrides): Promise<[string]>;
 
     "controller()"(overrides?: CallOverrides): Promise<[string]>;
 
+    fetch(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[string, string]>;
+
+    "fetch(uint256,bytes32)"(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[string, string]>;
+
+    gemJoins(arg0: BytesLike, overrides?: CallOverrides): Promise<[string]>;
+
+    "gemJoins(bytes32)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    register(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
+    "register(uint256,bytes32)"(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: Overrides
+    ): Promise<ContractTransaction>;
+
     tlm(overrides?: CallOverrides): Promise<[string]>;
 
     "tlm()"(overrides?: CallOverrides): Promise<[string]>;
+
+    tlmProxy(overrides?: CallOverrides): Promise<[string]>;
+
+    "tlmProxy()"(overrides?: CallOverrides): Promise<[string]>;
   };
 
-  FYDAI(overrides?: CallOverrides): Promise<string>;
+  assets(
+    arg0: BigNumberish,
+    arg1: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
-  "FYDAI()"(overrides?: CallOverrides): Promise<string>;
-
-  UNIT(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "UNIT()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-  WETH(overrides?: CallOverrides): Promise<string>;
-
-  "WETH()"(overrides?: CallOverrides): Promise<string>;
+  "assets(uint256,bytes32)"(
+    arg0: BigNumberish,
+    arg1: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
   borrow(
     collateral: BytesLike,
@@ -165,26 +255,81 @@ export class TLMProxy extends Contract {
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
+  borrowWithSignature(
+    collateral: BytesLike,
+    maturity: BigNumberish,
+    ilk: BytesLike,
+    to: string,
+    fyDaiToBorrow: BigNumberish,
+    controllerSig: BytesLike,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "borrowWithSignature(bytes32,uint256,bytes32,address,uint256,bytes)"(
+    collateral: BytesLike,
+    maturity: BigNumberish,
+    ilk: BytesLike,
+    to: string,
+    fyDaiToBorrow: BigNumberish,
+    controllerSig: BytesLike,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
   controller(overrides?: CallOverrides): Promise<string>;
 
   "controller()"(overrides?: CallOverrides): Promise<string>;
+
+  fetch(
+    maturity: BigNumberish,
+    ilk: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<[string, string]>;
+
+  "fetch(uint256,bytes32)"(
+    maturity: BigNumberish,
+    ilk: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<[string, string]>;
+
+  gemJoins(arg0: BytesLike, overrides?: CallOverrides): Promise<string>;
+
+  "gemJoins(bytes32)"(
+    arg0: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  register(
+    maturity: BigNumberish,
+    ilk: BytesLike,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
+
+  "register(uint256,bytes32)"(
+    maturity: BigNumberish,
+    ilk: BytesLike,
+    overrides?: Overrides
+  ): Promise<ContractTransaction>;
 
   tlm(overrides?: CallOverrides): Promise<string>;
 
   "tlm()"(overrides?: CallOverrides): Promise<string>;
 
+  tlmProxy(overrides?: CallOverrides): Promise<string>;
+
+  "tlmProxy()"(overrides?: CallOverrides): Promise<string>;
+
   callStatic: {
-    FYDAI(overrides?: CallOverrides): Promise<string>;
+    assets(
+      arg0: BigNumberish,
+      arg1: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
-    "FYDAI()"(overrides?: CallOverrides): Promise<string>;
-
-    UNIT(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "UNIT()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    WETH(overrides?: CallOverrides): Promise<string>;
-
-    "WETH()"(overrides?: CallOverrides): Promise<string>;
+    "assets(uint256,bytes32)"(
+      arg0: BigNumberish,
+      arg1: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
     borrow(
       collateral: BytesLike,
@@ -201,6 +346,26 @@ export class TLMProxy extends Contract {
       ilk: BytesLike,
       to: string,
       fyDaiToBorrow: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    borrowWithSignature(
+      collateral: BytesLike,
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      to: string,
+      fyDaiToBorrow: BigNumberish,
+      controllerSig: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "borrowWithSignature(bytes32,uint256,bytes32,address,uint256,bytes)"(
+      collateral: BytesLike,
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      to: string,
+      fyDaiToBorrow: BigNumberish,
+      controllerSig: BytesLike,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -208,25 +373,70 @@ export class TLMProxy extends Contract {
 
     "controller()"(overrides?: CallOverrides): Promise<string>;
 
+    fetch(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[string, string]>;
+
+    "fetch(uint256,bytes32)"(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[string, string]>;
+
+    gemJoins(arg0: BytesLike, overrides?: CallOverrides): Promise<string>;
+
+    "gemJoins(bytes32)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    register(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "register(uint256,bytes32)"(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     tlm(overrides?: CallOverrides): Promise<string>;
 
     "tlm()"(overrides?: CallOverrides): Promise<string>;
+
+    tlmProxy(overrides?: CallOverrides): Promise<string>;
+
+    "tlmProxy()"(overrides?: CallOverrides): Promise<string>;
   };
 
-  filters: {};
+  filters: {
+    SeriesRegistered(
+      maturity: BigNumberish | null,
+      ilk: BytesLike | null,
+      fyDai: null,
+      gemJoin: null
+    ): TypedEventFilter<
+      [BigNumber, string, string, string],
+      { maturity: BigNumber; ilk: string; fyDai: string; gemJoin: string }
+    >;
+  };
 
   estimateGas: {
-    FYDAI(overrides?: CallOverrides): Promise<BigNumber>;
+    assets(
+      arg0: BigNumberish,
+      arg1: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
-    "FYDAI()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    UNIT(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "UNIT()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    WETH(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "WETH()"(overrides?: CallOverrides): Promise<BigNumber>;
+    "assets(uint256,bytes32)"(
+      arg0: BigNumberish,
+      arg1: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     borrow(
       collateral: BytesLike,
@@ -243,6 +453,26 @@ export class TLMProxy extends Contract {
       ilk: BytesLike,
       to: string,
       fyDaiToBorrow: BigNumberish,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    borrowWithSignature(
+      collateral: BytesLike,
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      to: string,
+      fyDaiToBorrow: BigNumberish,
+      controllerSig: BytesLike,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "borrowWithSignature(bytes32,uint256,bytes32,address,uint256,bytes)"(
+      collateral: BytesLike,
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      to: string,
+      fyDaiToBorrow: BigNumberish,
+      controllerSig: BytesLike,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
@@ -250,23 +480,58 @@ export class TLMProxy extends Contract {
 
     "controller()"(overrides?: CallOverrides): Promise<BigNumber>;
 
+    fetch(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "fetch(uint256,bytes32)"(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    gemJoins(arg0: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
+
+    "gemJoins(bytes32)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    register(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    "register(uint256,bytes32)"(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: Overrides
+    ): Promise<BigNumber>;
+
     tlm(overrides?: CallOverrides): Promise<BigNumber>;
 
     "tlm()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    tlmProxy(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "tlmProxy()"(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    FYDAI(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    assets(
+      arg0: BigNumberish,
+      arg1: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
-    "FYDAI()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    UNIT(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "UNIT()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    WETH(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "WETH()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    "assets(uint256,bytes32)"(
+      arg0: BigNumberish,
+      arg1: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     borrow(
       collateral: BytesLike,
@@ -286,12 +551,70 @@ export class TLMProxy extends Contract {
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
+    borrowWithSignature(
+      collateral: BytesLike,
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      to: string,
+      fyDaiToBorrow: BigNumberish,
+      controllerSig: BytesLike,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "borrowWithSignature(bytes32,uint256,bytes32,address,uint256,bytes)"(
+      collateral: BytesLike,
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      to: string,
+      fyDaiToBorrow: BigNumberish,
+      controllerSig: BytesLike,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
     controller(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "controller()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
+    fetch(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "fetch(uint256,bytes32)"(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    gemJoins(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "gemJoins(bytes32)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    register(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    "register(uint256,bytes32)"(
+      maturity: BigNumberish,
+      ilk: BytesLike,
+      overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
     tlm(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "tlm()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    tlmProxy(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "tlmProxy()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };
 }

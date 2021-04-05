@@ -36,11 +36,14 @@ contract TLMMock  {
         ilks[FYDAI].gemJoin = address(new GemJoinMock(fyDai_));
     }
 
-    function sellGem(bytes32 ilk, address usr, uint256 gemAmt) external {
+    function sellGem(bytes32 ilk, address usr, uint256 gemAmt)
+        external returns(uint256)
+    {
         require(ilk == FYDAI);
         uint256 daiAmt = gemAmt;
 
         GemJoinMock(ilks[FYDAI].gemJoin).pull(msg.sender, gemAmt);
         dai.mint(usr, daiAmt);
+        return daiAmt;
     }
 }

@@ -191,14 +191,14 @@ export class TLMMock extends Contract {
       usr: string,
       gemAmt: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<BigNumber>;
 
     "sellGem(bytes32,address,uint256)"(
       ilk: BytesLike,
       usr: string,
       gemAmt: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<BigNumber>;
   };
 
   filters: {};
