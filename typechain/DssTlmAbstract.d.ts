@@ -23,63 +23,18 @@ import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
 interface DssTlmAbstractInterface extends ethers.utils.Interface {
   functions: {
-    "buyGem(bytes32,address,uint256)": FunctionFragment;
-    "dai()": FunctionFragment;
-    "daiJoin()": FunctionFragment;
-    "deny(address)": FunctionFragment;
-    "file(bytes32,bytes32,uint256)": FunctionFragment;
-    "hope(address)": FunctionFragment;
     "ilks(bytes32)": FunctionFragment;
-    "init(bytes32,address,uint256)": FunctionFragment;
-    "nope(address)": FunctionFragment;
-    "rely(address)": FunctionFragment;
     "sellGem(bytes32,address,uint256)": FunctionFragment;
-    "vat()": FunctionFragment;
-    "vow()": FunctionFragment;
-    "wards(address)": FunctionFragment;
   };
 
-  encodeFunctionData(
-    functionFragment: "buyGem",
-    values: [BytesLike, string, BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "dai", values?: undefined): string;
-  encodeFunctionData(functionFragment: "daiJoin", values?: undefined): string;
-  encodeFunctionData(functionFragment: "deny", values: [string]): string;
-  encodeFunctionData(
-    functionFragment: "file",
-    values: [BytesLike, BytesLike, BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "hope", values: [string]): string;
   encodeFunctionData(functionFragment: "ilks", values: [BytesLike]): string;
-  encodeFunctionData(
-    functionFragment: "init",
-    values: [BytesLike, string, BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "nope", values: [string]): string;
-  encodeFunctionData(functionFragment: "rely", values: [string]): string;
   encodeFunctionData(
     functionFragment: "sellGem",
     values: [BytesLike, string, BigNumberish]
   ): string;
-  encodeFunctionData(functionFragment: "vat", values?: undefined): string;
-  encodeFunctionData(functionFragment: "vow", values?: undefined): string;
-  encodeFunctionData(functionFragment: "wards", values: [string]): string;
 
-  decodeFunctionResult(functionFragment: "buyGem", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "dai", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "daiJoin", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "deny", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "file", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "hope", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ilks", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "init", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "nope", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "rely", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "sellGem", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "vat", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "vow", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "wards", data: BytesLike): Result;
 
   events: {};
 }
@@ -126,93 +81,15 @@ export class DssTlmAbstract extends Contract {
   interface: DssTlmAbstractInterface;
 
   functions: {
-    buyGem(
-      ilk: BytesLike,
-      usr: string,
-      amt: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    "buyGem(bytes32,address,uint256)"(
-      ilk: BytesLike,
-      usr: string,
-      amt: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    dai(overrides?: CallOverrides): Promise<[string]>;
-
-    "dai()"(overrides?: CallOverrides): Promise<[string]>;
-
-    daiJoin(overrides?: CallOverrides): Promise<[string]>;
-
-    "daiJoin()"(overrides?: CallOverrides): Promise<[string]>;
-
-    deny(usr: string, overrides?: Overrides): Promise<ContractTransaction>;
-
-    "deny(address)"(
-      usr: string,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    file(
-      ilk: BytesLike,
-      what: BytesLike,
-      data: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    "file(bytes32,bytes32,uint256)"(
-      ilk: BytesLike,
-      what: BytesLike,
-      data: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    hope(usr: string, overrides?: Overrides): Promise<ContractTransaction>;
-
-    "hope(address)"(
-      usr: string,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
     ilks(
-      arg0: BytesLike,
+      ilk: BytesLike,
       overrides?: CallOverrides
     ): Promise<[string, BigNumber]>;
 
     "ilks(bytes32)"(
-      arg0: BytesLike,
+      ilk: BytesLike,
       overrides?: CallOverrides
     ): Promise<[string, BigNumber]>;
-
-    init(
-      ilk: BytesLike,
-      gemJoin: string,
-      yield: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    "init(bytes32,address,uint256)"(
-      ilk: BytesLike,
-      gemJoin: string,
-      yield: BigNumberish,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    nope(usr: string, overrides?: Overrides): Promise<ContractTransaction>;
-
-    "nope(address)"(
-      usr: string,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
-
-    rely(usr: string, overrides?: Overrides): Promise<ContractTransaction>;
-
-    "rely(address)"(
-      usr: string,
-      overrides?: Overrides
-    ): Promise<ContractTransaction>;
 
     sellGem(
       ilk: BytesLike,
@@ -227,110 +104,14 @@ export class DssTlmAbstract extends Contract {
       gemAmt: BigNumberish,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
-
-    vat(overrides?: CallOverrides): Promise<[string]>;
-
-    "vat()"(overrides?: CallOverrides): Promise<[string]>;
-
-    vow(overrides?: CallOverrides): Promise<[string]>;
-
-    "vow()"(overrides?: CallOverrides): Promise<[string]>;
-
-    wards(arg0: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "wards(address)"(
-      arg0: string,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
   };
 
-  buyGem(
-    ilk: BytesLike,
-    usr: string,
-    amt: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  "buyGem(bytes32,address,uint256)"(
-    ilk: BytesLike,
-    usr: string,
-    amt: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  dai(overrides?: CallOverrides): Promise<string>;
-
-  "dai()"(overrides?: CallOverrides): Promise<string>;
-
-  daiJoin(overrides?: CallOverrides): Promise<string>;
-
-  "daiJoin()"(overrides?: CallOverrides): Promise<string>;
-
-  deny(usr: string, overrides?: Overrides): Promise<ContractTransaction>;
-
-  "deny(address)"(
-    usr: string,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  file(
-    ilk: BytesLike,
-    what: BytesLike,
-    data: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  "file(bytes32,bytes32,uint256)"(
-    ilk: BytesLike,
-    what: BytesLike,
-    data: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  hope(usr: string, overrides?: Overrides): Promise<ContractTransaction>;
-
-  "hope(address)"(
-    usr: string,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  ilks(
-    arg0: BytesLike,
-    overrides?: CallOverrides
-  ): Promise<[string, BigNumber]>;
+  ilks(ilk: BytesLike, overrides?: CallOverrides): Promise<[string, BigNumber]>;
 
   "ilks(bytes32)"(
-    arg0: BytesLike,
+    ilk: BytesLike,
     overrides?: CallOverrides
   ): Promise<[string, BigNumber]>;
-
-  init(
-    ilk: BytesLike,
-    gemJoin: string,
-    yield: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  "init(bytes32,address,uint256)"(
-    ilk: BytesLike,
-    gemJoin: string,
-    yield: BigNumberish,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  nope(usr: string, overrides?: Overrides): Promise<ContractTransaction>;
-
-  "nope(address)"(
-    usr: string,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
-
-  rely(usr: string, overrides?: Overrides): Promise<ContractTransaction>;
-
-  "rely(address)"(
-    usr: string,
-    overrides?: Overrides
-  ): Promise<ContractTransaction>;
 
   sellGem(
     ilk: BytesLike,
@@ -346,121 +127,28 @@ export class DssTlmAbstract extends Contract {
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  vat(overrides?: CallOverrides): Promise<string>;
-
-  "vat()"(overrides?: CallOverrides): Promise<string>;
-
-  vow(overrides?: CallOverrides): Promise<string>;
-
-  "vow()"(overrides?: CallOverrides): Promise<string>;
-
-  wards(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
-
-  "wards(address)"(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
-
   callStatic: {
-    buyGem(
-      ilk: BytesLike,
-      usr: string,
-      amt: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "buyGem(bytes32,address,uint256)"(
-      ilk: BytesLike,
-      usr: string,
-      amt: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    dai(overrides?: CallOverrides): Promise<string>;
-
-    "dai()"(overrides?: CallOverrides): Promise<string>;
-
-    daiJoin(overrides?: CallOverrides): Promise<string>;
-
-    "daiJoin()"(overrides?: CallOverrides): Promise<string>;
-
-    deny(usr: string, overrides?: CallOverrides): Promise<void>;
-
-    "deny(address)"(usr: string, overrides?: CallOverrides): Promise<void>;
-
-    file(
-      ilk: BytesLike,
-      what: BytesLike,
-      data: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "file(bytes32,bytes32,uint256)"(
-      ilk: BytesLike,
-      what: BytesLike,
-      data: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    hope(usr: string, overrides?: CallOverrides): Promise<void>;
-
-    "hope(address)"(usr: string, overrides?: CallOverrides): Promise<void>;
-
     ilks(
-      arg0: BytesLike,
+      ilk: BytesLike,
       overrides?: CallOverrides
     ): Promise<[string, BigNumber]>;
 
     "ilks(bytes32)"(
-      arg0: BytesLike,
+      ilk: BytesLike,
       overrides?: CallOverrides
     ): Promise<[string, BigNumber]>;
-
-    init(
-      ilk: BytesLike,
-      gemJoin: string,
-      yield: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "init(bytes32,address,uint256)"(
-      ilk: BytesLike,
-      gemJoin: string,
-      yield: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    nope(usr: string, overrides?: CallOverrides): Promise<void>;
-
-    "nope(address)"(usr: string, overrides?: CallOverrides): Promise<void>;
-
-    rely(usr: string, overrides?: CallOverrides): Promise<void>;
-
-    "rely(address)"(usr: string, overrides?: CallOverrides): Promise<void>;
 
     sellGem(
       ilk: BytesLike,
       usr: string,
       gemAmt: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<BigNumber>;
 
     "sellGem(bytes32,address,uint256)"(
       ilk: BytesLike,
       usr: string,
       gemAmt: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    vat(overrides?: CallOverrides): Promise<string>;
-
-    "vat()"(overrides?: CallOverrides): Promise<string>;
-
-    vow(overrides?: CallOverrides): Promise<string>;
-
-    "vow()"(overrides?: CallOverrides): Promise<string>;
-
-    wards(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
-
-    "wards(address)"(
-      arg0: string,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
@@ -468,78 +156,12 @@ export class DssTlmAbstract extends Contract {
   filters: {};
 
   estimateGas: {
-    buyGem(
-      ilk: BytesLike,
-      usr: string,
-      amt: BigNumberish,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    "buyGem(bytes32,address,uint256)"(
-      ilk: BytesLike,
-      usr: string,
-      amt: BigNumberish,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    dai(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "dai()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    daiJoin(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "daiJoin()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    deny(usr: string, overrides?: Overrides): Promise<BigNumber>;
-
-    "deny(address)"(usr: string, overrides?: Overrides): Promise<BigNumber>;
-
-    file(
-      ilk: BytesLike,
-      what: BytesLike,
-      data: BigNumberish,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    "file(bytes32,bytes32,uint256)"(
-      ilk: BytesLike,
-      what: BytesLike,
-      data: BigNumberish,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    hope(usr: string, overrides?: Overrides): Promise<BigNumber>;
-
-    "hope(address)"(usr: string, overrides?: Overrides): Promise<BigNumber>;
-
-    ilks(arg0: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
+    ilks(ilk: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
 
     "ilks(bytes32)"(
-      arg0: BytesLike,
+      ilk: BytesLike,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
-    init(
-      ilk: BytesLike,
-      gemJoin: string,
-      yield: BigNumberish,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    "init(bytes32,address,uint256)"(
-      ilk: BytesLike,
-      gemJoin: string,
-      yield: BigNumberish,
-      overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    nope(usr: string, overrides?: Overrides): Promise<BigNumber>;
-
-    "nope(address)"(usr: string, overrides?: Overrides): Promise<BigNumber>;
-
-    rely(usr: string, overrides?: Overrides): Promise<BigNumber>;
-
-    "rely(address)"(usr: string, overrides?: Overrides): Promise<BigNumber>;
 
     sellGem(
       ilk: BytesLike,
@@ -553,111 +175,18 @@ export class DssTlmAbstract extends Contract {
       usr: string,
       gemAmt: BigNumberish,
       overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    vat(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "vat()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    vow(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "vow()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    wards(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
-
-    "wards(address)"(
-      arg0: string,
-      overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    buyGem(
-      ilk: BytesLike,
-      usr: string,
-      amt: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    "buyGem(bytes32,address,uint256)"(
-      ilk: BytesLike,
-      usr: string,
-      amt: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    dai(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "dai()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    daiJoin(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "daiJoin()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    deny(usr: string, overrides?: Overrides): Promise<PopulatedTransaction>;
-
-    "deny(address)"(
-      usr: string,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    file(
-      ilk: BytesLike,
-      what: BytesLike,
-      data: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    "file(bytes32,bytes32,uint256)"(
-      ilk: BytesLike,
-      what: BytesLike,
-      data: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    hope(usr: string, overrides?: Overrides): Promise<PopulatedTransaction>;
-
-    "hope(address)"(
-      usr: string,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
     ilks(
-      arg0: BytesLike,
+      ilk: BytesLike,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     "ilks(bytes32)"(
-      arg0: BytesLike,
+      ilk: BytesLike,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    init(
-      ilk: BytesLike,
-      gemJoin: string,
-      yield: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    "init(bytes32,address,uint256)"(
-      ilk: BytesLike,
-      gemJoin: string,
-      yield: BigNumberish,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    nope(usr: string, overrides?: Overrides): Promise<PopulatedTransaction>;
-
-    "nope(address)"(
-      usr: string,
-      overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    rely(usr: string, overrides?: Overrides): Promise<PopulatedTransaction>;
-
-    "rely(address)"(
-      usr: string,
-      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     sellGem(
@@ -672,24 +201,6 @@ export class DssTlmAbstract extends Contract {
       usr: string,
       gemAmt: BigNumberish,
       overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    vat(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "vat()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    vow(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "vow()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    wards(
-      arg0: string,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "wards(address)"(
-      arg0: string,
-      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };
 }

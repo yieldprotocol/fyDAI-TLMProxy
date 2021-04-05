@@ -30,10 +30,10 @@ interface ControllerMockInterface extends ethers.utils.Interface {
     "addDelegateBySignature(address,address,uint256,uint8,bytes32,bytes32)": FunctionFragment;
     "borrow(bytes32,uint256,address,address,uint256)": FunctionFragment;
     "delegated(address,address)": FunctionFragment;
-    "fyDais(uint256)": FunctionFragment;
     "post(bytes32,address,address,uint256)": FunctionFragment;
     "posted(bytes32)": FunctionFragment;
     "revokeDelegate(address)": FunctionFragment;
+    "series(uint256)": FunctionFragment;
     "signatureCount(address)": FunctionFragment;
     "treasury()": FunctionFragment;
     "weth()": FunctionFragment;
@@ -62,10 +62,6 @@ interface ControllerMockInterface extends ethers.utils.Interface {
     values: [string, string]
   ): string;
   encodeFunctionData(
-    functionFragment: "fyDais",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
     functionFragment: "post",
     values: [BytesLike, string, string, BigNumberish]
   ): string;
@@ -73,6 +69,10 @@ interface ControllerMockInterface extends ethers.utils.Interface {
   encodeFunctionData(
     functionFragment: "revokeDelegate",
     values: [string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "series",
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "signatureCount",
@@ -100,13 +100,13 @@ interface ControllerMockInterface extends ethers.utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "borrow", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "delegated", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "fyDais", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "post", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "posted", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "revokeDelegate",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "series", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "signatureCount",
     data: BytesLike
@@ -235,13 +235,6 @@ export class ControllerMock extends Contract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
-    fyDais(arg0: BigNumberish, overrides?: CallOverrides): Promise<[string]>;
-
-    "fyDais(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
     post(
       collateral: BytesLike,
       from: string,
@@ -274,6 +267,13 @@ export class ControllerMock extends Contract {
       delegate: string,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
+
+    series(arg0: BigNumberish, overrides?: CallOverrides): Promise<[string]>;
+
+    "series(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
     signatureCount(
       arg0: string,
@@ -366,13 +366,6 @@ export class ControllerMock extends Contract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  fyDais(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
-
-  "fyDais(uint256)"(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
   post(
     collateral: BytesLike,
     from: string,
@@ -405,6 +398,13 @@ export class ControllerMock extends Contract {
     delegate: string,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
+
+  series(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+  "series(uint256)"(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
   signatureCount(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -491,13 +491,6 @@ export class ControllerMock extends Contract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    fyDais(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
-
-    "fyDais(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
     post(
       collateral: BytesLike,
       from: string,
@@ -527,6 +520,13 @@ export class ControllerMock extends Contract {
       delegate: string,
       overrides?: CallOverrides
     ): Promise<void>;
+
+    series(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+    "series(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
     signatureCount(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -625,13 +625,6 @@ export class ControllerMock extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    fyDais(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-
-    "fyDais(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     post(
       collateral: BytesLike,
       from: string,
@@ -660,6 +653,13 @@ export class ControllerMock extends Contract {
     "revokeDelegate(address)"(
       delegate: string,
       overrides?: Overrides
+    ): Promise<BigNumber>;
+
+    series(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+
+    "series(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     signatureCount(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
@@ -757,16 +757,6 @@ export class ControllerMock extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    fyDais(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "fyDais(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     post(
       collateral: BytesLike,
       from: string,
@@ -801,6 +791,16 @@ export class ControllerMock extends Contract {
     "revokeDelegate(address)"(
       delegate: string,
       overrides?: Overrides
+    ): Promise<PopulatedTransaction>;
+
+    series(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "series(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     signatureCount(

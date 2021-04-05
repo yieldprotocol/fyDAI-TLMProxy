@@ -24,104 +24,6 @@ const _abi = [
         name: "ilk",
         type: "bytes32",
       },
-      {
-        internalType: "address",
-        name: "usr",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "amt",
-        type: "uint256",
-      },
-    ],
-    name: "buyGem",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "dai",
-    outputs: [
-      {
-        internalType: "contract DaiAbstract",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "daiJoin",
-    outputs: [
-      {
-        internalType: "contract DaiJoinAbstract",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "usr",
-        type: "address",
-      },
-    ],
-    name: "deny",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "ilk",
-        type: "bytes32",
-      },
-      {
-        internalType: "bytes32",
-        name: "what",
-        type: "bytes32",
-      },
-      {
-        internalType: "uint256",
-        name: "data",
-        type: "uint256",
-      },
-    ],
-    name: "file",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "usr",
-        type: "address",
-      },
-    ],
-    name: "hope",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "",
-        type: "bytes32",
-      },
     ],
     name: "ilks",
     outputs: [
@@ -148,55 +50,6 @@ const _abi = [
       },
       {
         internalType: "address",
-        name: "gemJoin",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "yield",
-        type: "uint256",
-      },
-    ],
-    name: "init",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "usr",
-        type: "address",
-      },
-    ],
-    name: "nope",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "usr",
-        type: "address",
-      },
-    ],
-    name: "rely",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "ilk",
-        type: "bytes32",
-      },
-      {
-        internalType: "address",
         name: "usr",
         type: "address",
       },
@@ -207,45 +60,6 @@ const _abi = [
       },
     ],
     name: "sellGem",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "vat",
-    outputs: [
-      {
-        internalType: "contract VatAbstract",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "vow",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    name: "wards",
     outputs: [
       {
         internalType: "uint256",
@@ -253,7 +67,7 @@ const _abi = [
         type: "uint256",
       },
     ],
-    stateMutability: "view",
+    stateMutability: "nonpayable",
     type: "function",
   },
 ];

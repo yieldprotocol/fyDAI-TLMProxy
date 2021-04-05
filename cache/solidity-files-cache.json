@@ -1,9 +1,9 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/yash/yield/fyDAI-TLMProxy/contracts/mocks/ControllerMock.sol": {
-      "lastModificationDate": 1615393215623,
-      "contentHash": "9b752d03e339dce82d02a9cd31f2e683",
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/contracts/mocks/ControllerMock.sol": {
+      "lastModificationDate": 1617629017197,
+      "contentHash": "39903af66f9ad83f93216096d56ff9ea",
       "sourceName": "contracts/mocks/ControllerMock.sol",
       "solcConfig": {
         "version": "0.6.10",
@@ -40,8 +40,8 @@
         "TreasuryMock"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1615395104705,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1617628244241,
       "contentHash": "e0a41531d159d3a32f84b7a3ecf9fabb",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
@@ -74,8 +74,8 @@
         "IERC20"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/access/Delegable.sol": {
-      "lastModificationDate": 1615395104822,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/access/Delegable.sol": {
+      "lastModificationDate": 1617628244241,
       "contentHash": "a1b25b526304ace7a143af4f5c6f3094",
       "sourceName": "@yield-protocol/utils/contracts/access/Delegable.sol",
       "solcConfig": {
@@ -110,8 +110,8 @@
         "Delegable"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/contracts/mocks/FYDaiMock.sol": {
-      "lastModificationDate": 1615393215624,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/contracts/mocks/FYDaiMock.sol": {
+      "lastModificationDate": 1615319044587,
       "contentHash": "262aef6bed61e594219d2f096721cd29",
       "sourceName": "contracts/mocks/FYDaiMock.sol",
       "solcConfig": {
@@ -146,8 +146,8 @@
         "FYDaiMock"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/interfaces/IDelegable.sol": {
-      "lastModificationDate": 1615395104822,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/interfaces/IDelegable.sol": {
+      "lastModificationDate": 1617628244241,
       "contentHash": "f02112f3562b163714e0adace458d7a9",
       "sourceName": "@yield-protocol/utils/contracts/interfaces/IDelegable.sol",
       "solcConfig": {
@@ -180,8 +180,8 @@
         "IDelegable"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/contracts/mocks/ERC20Mock.sol": {
-      "lastModificationDate": 1615393215624,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/contracts/mocks/ERC20Mock.sol": {
+      "lastModificationDate": 1615315707071,
       "contentHash": "bfae1a2011d5ff3f980243ccaf4c63a1",
       "sourceName": "contracts/mocks/ERC20Mock.sol",
       "solcConfig": {
@@ -216,8 +216,8 @@
         "ERC20Mock"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/token/ERC20Permit.sol": {
-      "lastModificationDate": 1615395104822,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/token/ERC20Permit.sol": {
+      "lastModificationDate": 1617628244241,
       "contentHash": "33ab996d135ea70ff89c8467b074cd35",
       "sourceName": "@yield-protocol/utils/contracts/token/ERC20Permit.sol",
       "solcConfig": {
@@ -253,8 +253,8 @@
         "ERC20Permit"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
-      "lastModificationDate": 1615395104702,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "lastModificationDate": 1617628244241,
       "contentHash": "8065b340476f61365c076897199425f1",
       "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
       "solcConfig": {
@@ -291,8 +291,8 @@
         "ERC20"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/interfaces/IERC2612.sol": {
-      "lastModificationDate": 1615395104822,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/interfaces/IERC2612.sol": {
+      "lastModificationDate": 1617628244241,
       "contentHash": "9ecadf8fb864d94d6890d49e90210fc4",
       "sourceName": "@yield-protocol/utils/contracts/interfaces/IERC2612.sol",
       "solcConfig": {
@@ -325,8 +325,8 @@
         "IERC2612"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1615395100548,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1617628244217,
       "contentHash": "2adbd82f6d055a4751566d4671512b03",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -359,8 +359,8 @@
         "Context"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
-      "lastModificationDate": 1615395100548,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
+      "lastModificationDate": 1617628244217,
       "contentHash": "e03e12206057e809eb76c5f681170c32",
       "sourceName": "@openzeppelin/contracts/math/SafeMath.sol",
       "solcConfig": {
@@ -393,9 +393,9 @@
         "SafeMath"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/contracts/mocks/TLMMock.sol": {
-      "lastModificationDate": 1615393215624,
-      "contentHash": "6df88e7f948b1812957306527c1ecbb4",
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/contracts/mocks/TLMMock.sol": {
+      "lastModificationDate": 1617629593063,
+      "contentHash": "ed82b66fa76a369dbe11f03829cdf22f",
       "sourceName": "contracts/mocks/TLMMock.sol",
       "solcConfig": {
         "version": "0.6.10",
@@ -431,8 +431,8 @@
         "TLMMock"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@yield-protocol/vault-v1/contracts/interfaces/IFYDai.sol": {
-      "lastModificationDate": 1615395104827,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@yield-protocol/vault-v1/contracts/interfaces/IFYDai.sol": {
+      "lastModificationDate": 1615310173962,
       "contentHash": "2dc3a0a6b8bb546b840e20a2672cc97e",
       "sourceName": "@yield-protocol/vault-v1/contracts/interfaces/IFYDai.sol",
       "solcConfig": {
@@ -468,8 +468,8 @@
         "IFYDai"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@yield-protocol/vault-v1/contracts/interfaces/IController.sol": {
-      "lastModificationDate": 1615395104827,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@yield-protocol/vault-v1/contracts/interfaces/IController.sol": {
+      "lastModificationDate": 1615310173962,
       "contentHash": "9bf5623908024983fc68424347b5b9ab",
       "sourceName": "@yield-protocol/vault-v1/contracts/interfaces/IController.sol",
       "solcConfig": {
@@ -506,8 +506,8 @@
         "IController"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@yield-protocol/vault-v1/contracts/interfaces/ITreasury.sol": {
-      "lastModificationDate": 1615395104827,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@yield-protocol/vault-v1/contracts/interfaces/ITreasury.sol": {
+      "lastModificationDate": 1615309768993,
       "contentHash": "768a7106fdfd3de2e09aa76711282d81",
       "sourceName": "@yield-protocol/vault-v1/contracts/interfaces/ITreasury.sol",
       "solcConfig": {
@@ -548,8 +548,8 @@
         "ITreasury"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/interfaces/weth/IWeth.sol": {
-      "lastModificationDate": 1615395106481,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/interfaces/weth/IWeth.sol": {
+      "lastModificationDate": 1617628244245,
       "contentHash": "ea77c7e4886aae39b00be827cfe458f3",
       "sourceName": "@yield-protocol/utils/contracts/interfaces/weth/IWeth.sol",
       "solcConfig": {
@@ -584,8 +584,8 @@
         "IWeth"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/dss-interfaces/src/dss/VatAbstract.sol": {
-      "lastModificationDate": 1615395105367,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/dss-interfaces/src/dss/VatAbstract.sol": {
+      "lastModificationDate": 1617629173376,
       "contentHash": "df5877cc55c6b783b47f4bf6b3d007f4",
       "sourceName": "dss-interfaces/src/dss/VatAbstract.sol",
       "solcConfig": {
@@ -618,8 +618,8 @@
         "VatAbstract"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/dss-interfaces/src/dss/DaiAbstract.sol": {
-      "lastModificationDate": 1615395105363,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/dss-interfaces/src/dss/DaiAbstract.sol": {
+      "lastModificationDate": 1617629173376,
       "contentHash": "f6f023875d7a7092f739aaa356e1080f",
       "sourceName": "dss-interfaces/src/dss/DaiAbstract.sol",
       "solcConfig": {
@@ -652,8 +652,8 @@
         "DaiAbstract"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/dss-interfaces/src/dss/GemJoinAbstract.sol": {
-      "lastModificationDate": 1615395105363,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/dss-interfaces/src/dss/GemJoinAbstract.sol": {
+      "lastModificationDate": 1617629173376,
       "contentHash": "82edd2dff28619435710dd26d10283bf",
       "sourceName": "dss-interfaces/src/dss/GemJoinAbstract.sol",
       "solcConfig": {
@@ -686,8 +686,8 @@
         "GemJoinAbstract"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/dss-interfaces/src/dss/DaiJoinAbstract.sol": {
-      "lastModificationDate": 1615395105363,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/dss-interfaces/src/dss/DaiJoinAbstract.sol": {
+      "lastModificationDate": 1617629173376,
       "contentHash": "f386e2c802014e5902321e2217154ba4",
       "sourceName": "dss-interfaces/src/dss/DaiJoinAbstract.sol",
       "solcConfig": {
@@ -720,8 +720,8 @@
         "DaiJoinAbstract"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/dss-interfaces/src/dss/PotAbstract.sol": {
-      "lastModificationDate": 1615395105367,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/dss-interfaces/src/dss/PotAbstract.sol": {
+      "lastModificationDate": 1617629173376,
       "contentHash": "ad88bde34a4e1d6eb72f682ce27da537",
       "sourceName": "dss-interfaces/src/dss/PotAbstract.sol",
       "solcConfig": {
@@ -754,8 +754,8 @@
         "PotAbstract"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/interfaces/chai/IChai.sol": {
-      "lastModificationDate": 1615395106479,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/interfaces/chai/IChai.sol": {
+      "lastModificationDate": 1617628244241,
       "contentHash": "d863193c4ff9932a5fdecea48374d5d8",
       "sourceName": "@yield-protocol/utils/contracts/interfaces/chai/IChai.sol",
       "solcConfig": {
@@ -791,8 +791,8 @@
         "IChai"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/utils/YieldAuth.sol": {
-      "lastModificationDate": 1615395104822,
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/utils/YieldAuth.sol": {
+      "lastModificationDate": 1617628244241,
       "contentHash": "d668c0bd02932e4ae785e3aab44b8398",
       "sourceName": "@yield-protocol/utils/contracts/utils/YieldAuth.sol",
       "solcConfig": {
@@ -829,47 +829,9 @@
         "YieldAuth"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@yield-protocol/dss-tlm/src/DssTlmAbstract.sol": {
-      "lastModificationDate": 1615406769113,
-      "contentHash": "bbdb0d06ca0900c54113260babda8e81",
-      "sourceName": "@yield-protocol/dss-tlm/src/DssTlmAbstract.sol",
-      "solcConfig": {
-        "version": "0.6.10",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 20000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "dss-interfaces/src/dss/DaiJoinAbstract.sol",
-        "dss-interfaces/src/dss/DaiAbstract.sol",
-        "dss-interfaces/src/dss/VatAbstract.sol"
-      ],
-      "versionPragmas": [
-        "^0.6.7"
-      ],
-      "artifacts": [
-        "DssTlmAbstract"
-      ]
-    },
-    "/Users/yash/yield/fyDAI-TLMProxy/contracts/TLMProxy.sol": {
-      "lastModificationDate": 1615487826812,
-      "contentHash": "75787f1272a426e049b5b867e2953f65",
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/contracts/TLMProxy.sol": {
+      "lastModificationDate": 1617629387003,
+      "contentHash": "31ad8d95d95ae93bf1b5c8d556eae129",
       "sourceName": "contracts/TLMProxy.sol",
       "solcConfig": {
         "version": "0.6.10",
@@ -894,23 +856,60 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/math/SafeMath.sol",
-        "@yield-protocol/utils/contracts/math/DecimalMath.sol",
         "@yield-protocol/utils/contracts/utils/YieldAuth.sol",
-        "@yield-protocol/vault-v1/contracts/interfaces/IController.sol",
-        "@yield-protocol/dss-tlm/src/DssTlmAbstract.sol"
+        "@yield-protocol/vault-v1/contracts/interfaces/IFYDai.sol",
+        "@yield-protocol/vault-v1/contracts/interfaces/IController.sol"
       ],
       "versionPragmas": [
         "^0.6.10"
       ],
       "artifacts": [
+        "AuthGemJoinAbstract",
+        "DssTlmAbstract",
+        "MaturingGemAbstract",
         "TLMProxy"
       ]
     },
-    "/Users/yash/yield/fyDAI-TLMProxy/node_modules/@yield-protocol/utils/contracts/math/DecimalMath.sol": {
-      "lastModificationDate": 1615395104822,
-      "contentHash": "ab799f928b2e8b702d7492fa76a7097d",
-      "sourceName": "@yield-protocol/utils/contracts/math/DecimalMath.sol",
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/contracts/external/auth.sol": {
+      "lastModificationDate": 1617629461138,
+      "contentHash": "491731138213902c99369a6bc738ecd5",
+      "sourceName": "contracts/external/auth.sol",
+      "solcConfig": {
+        "version": "0.6.10",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 20000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.23"
+      ],
+      "artifacts": [
+        "DSAuth",
+        "DSAuthEvents",
+        "DSAuthority"
+      ]
+    },
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/contracts/external/dsproxy.sol": {
+      "lastModificationDate": 1617629479122,
+      "contentHash": "51e4e36ff60b1ab36ddd8b93b521ffd0",
+      "sourceName": "contracts/external/dsproxy.sol",
       "solcConfig": {
         "version": "0.6.10",
         "settings": {
@@ -934,13 +933,86 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/math/SafeMath.sol"
+        "./auth.sol",
+        "./note.sol"
       ],
       "versionPragmas": [
-        "^0.6.10"
+        "^0.6.0"
       ],
       "artifacts": [
-        "DecimalMath"
+        "DSProxy",
+        "DSProxyCache",
+        "DSProxyFactory"
+      ]
+    },
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/contracts/external/note.sol": {
+      "lastModificationDate": 1617629533454,
+      "contentHash": "fbc199052dc3ce0564b2a945c13afb74",
+      "sourceName": "contracts/external/note.sol",
+      "solcConfig": {
+        "version": "0.6.10",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 20000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.23"
+      ],
+      "artifacts": [
+        "DSNote"
+      ]
+    },
+    "/home/alberto/Code/Yield/fyDAI-TLMProxy/contracts/external/ProxyRegistry.sol": {
+      "lastModificationDate": 1617629535046,
+      "contentHash": "472441629964b1ed2f594bfcb248bf0f",
+      "sourceName": "contracts/external/ProxyRegistry.sol",
+      "solcConfig": {
+        "version": "0.6.10",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 20000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./dsproxy.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "ProxyRegistry"
       ]
     }
   }
