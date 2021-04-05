@@ -907,8 +907,8 @@
       ]
     },
     "/home/alberto/Code/Yield/fyDAI-TLMProxy/contracts/external/dsproxy.sol": {
-      "lastModificationDate": 1617629479122,
-      "contentHash": "51e4e36ff60b1ab36ddd8b93b521ffd0",
+      "lastModificationDate": 1617629922161,
+      "contentHash": "02ff47d1e459eaf1dde8b2efafd96d83",
       "sourceName": "contracts/external/dsproxy.sol",
       "solcConfig": {
         "version": "0.6.10",
